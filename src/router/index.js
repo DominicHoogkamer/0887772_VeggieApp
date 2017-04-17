@@ -2,7 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Home from '@/components/home/Home'
-import Food from '@/components/food/food'
+
+import FoodList from '@/components/food/FoodList'
+import Food from '@/components/food/Food'
+
 
 
 
@@ -15,8 +18,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/food',
-      component: Food
+      path: '/products',
+      component: FoodList
     },
+    {
+      path: '/products/product/:id',
+      component: Food
+    }
   ]
 })

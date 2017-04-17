@@ -1,3 +1,5 @@
 <template>
-    <h1>Food</h1>
+    <div>
+        <p>ID = {{ $route.params.id }}</p>
+    </div>
 </template>
