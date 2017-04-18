@@ -1,16 +1,15 @@
 <template>
     <div id="app">
-        <h1>Please fill in what you have eaten</h1>
+        <h1>Please fill in .....</h1>
         <p>So we can help you with your progress!</p>
         <input type="text" v-model="searchString" placeholder="Search for food" @keyup="fillArray"> 
         <ProductList :products="products"  :search="searchString" :active="active"></ProductList>      
-        <button class="end-button" >Add Food</button>
+        <button class="end-button" >Add Products</button>
     </div>
 </template>
 
 <script>
 import ProductList from '@/components/home/ProductList'
-
 
 export default {
     data () {
@@ -18,7 +17,6 @@ export default {
             active: false,
             searchString: '',
             products: [{
-
             }]
         }
     },
@@ -31,7 +29,6 @@ export default {
         this.$http.get(`https://api.nutritionix.com/v1_1/search/${this.searchString}?results=0%3A5&?fields=item_name%2Citem_id%2Cbrand_name&appId=e04cdea6&appKey=a9e5f13309aa5afb4086ab88774eab9f`)
         .then(response => {
           this.products = response.body.hits
-          console.log(response.body.hits)
         }, error => {
           console.log(error);
         });       
@@ -49,14 +46,16 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #5B5B5D;
-  margin-top: 60px;
-  padding: 0 15px 0 15px;
 }
 h1 {
   font-weight: bold;
