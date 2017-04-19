@@ -3,13 +3,15 @@
     <div class="container">
         <ul class="dailey-food-list">
             <li v-for="foodItem in foodItems">
-                <h3> 1 {{ foodItem.name }}</h3>
-                <p>{{ foodItem.iron }}</p>
-                <!--<router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>-->
+                <p>{{ foodItem.daypart}}</p>
+                <h3> {{ foodItem.name }}</h3>
+                <button @click="removeElement(foodItem, foodItem.index)">Remove</button>
+                <router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>
             </li>
+            <router-link to="/products/info">See Dailey Information</router-link>
         </ul>
 
-        <h3>Yesterday</h3>
+        <h3>Yesterday: {{this.yesterday}}</h3>
 
         <ul class="dailey-food-list">
             <li v-for="staticData in staticDatas">
@@ -24,6 +26,8 @@
 
 
 <script>
+    import moment from 'moment';
+
     export default {
         data () {
             return {
@@ -34,7 +38,7 @@
                     {name: 'apple', iron: '4'},
                 ],
                 foodItems: [],
-                count : ''
+                yesterday : moment().add(-1, 'days').format("DD-MM-YYYY"),
             }
         },
         created () {
@@ -42,10 +46,23 @@
         },
         methods: {
             fillArray () {
-                for (let i = 0; i < JSON.parse(localStorage.getItem('itemsArray')).length; i++) {
-                    this.$http.get("https://api.nutritionix.com/v1/item/"+JSON.parse(localStorage.getItem('itemsArray'))[i].id+"?appId=a47256fa&appKey=ad60d4a30bd7aac0ff4b0a32f349c93a")
+                let dataObj = JSON.parse(localStorage.getItem('itemsArray')),
+                products = '',
+                productId = '',
+                dayPart = ''
+
+
+                for(let i = 0; i < dataObj.length; i++) {
+                    products = dataObj[i].products[0];
+                    dayPart = products.daypart;
+                    productId = products.id;
+
+                    this.$http.get(`https://api.nutritionix.com/v1/item/${productId}?appId=66d550ab&appKey=8f367946eb8f7f451a2b4e52df031158`)
                     .then(response => {
+                        
                         let productObject = {
+                            index: i,
+                            daypart: dayPart,
                             name: response.body.item_name,
                             iron: response.body.nf_iron_dv,
                         }
@@ -53,7 +70,11 @@
                     }, error => {
                     console.log(error);
                     }); 
-                }      
+
+                }
+            },
+            removeElement(index,id) {
+                this.foodItems.splice(index, 1);
             }
         }
     }

@@ -1,9 +1,15 @@
 <template>
 <div>
+    <select v-model="dayPart">
+        <option value="breakfest">breakfest</option>
+        <option value="lunch">lunch</option>
+        <option value="dinner">dinner</option>
+        <option value="snack">snack</option>
+    </select>
     <ul v-show="active">
       <li v-for="product in filteredProducts" >
         <p :id="product.fields.item_id">{{product.fields.item_name}}</p>
-        <button v-bind:class="{ active: isActive }" @click="foodLocal(product.fields.item_id)">Add</button>
+        <button v-bind:class="{ active: isActive }" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</button>
       </li>
     </ul>
 </div>
@@ -12,6 +18,7 @@
 
 <script>
     export default {
+
         data () {
             return {
                 dayPart: 'Breakfest',
@@ -20,13 +27,20 @@
         },
         props: ['products','search','active'],
         methods: {
-            foodLocal (id) {
+            foodLocal (id,name) {
                 this.isActive = !this.active;
+                let newItem = {}
 
                 let oldItems = JSON.parse(localStorage.getItem('itemsArray')) || [];
 
-                let newItem = {
-                    'id': id
+                newItem ={
+                    'products': [
+                        {
+                            'daypart': this.dayPart,
+                            'name': name,
+                            'id': id
+                        }
+                    ]
                 }
 
                 oldItems.push(newItem);

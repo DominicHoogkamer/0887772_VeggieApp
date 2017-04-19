@@ -4,7 +4,7 @@
         <p>So we can help you with your progress!</p>
         <input type="text" v-model="searchString" placeholder="Search for food" @keyup="fillArray"> 
         <ProductList :products="products"  :search="searchString" :active="active"></ProductList>      
-        <button class="end-button" >Add Products</button>
+        <button class="end-button" >See your products</button>
     </div>
 </template>
 
