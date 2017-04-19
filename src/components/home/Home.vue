@@ -1,10 +1,12 @@
 <template>
-    <div id="app">
-        <h1>Please fill in .....</h1>
-        <p>So we can help you with your progress!</p>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Please fill in .....</h1>
+            <p>So we can help you with your progress!</p>
+        </div>
         <input type="text" v-model="searchString" placeholder="Search for food" @keyup="fillArray"> 
         <ProductList :products="products"  :search="searchString" :active="active"></ProductList>      
-        <button class="end-button" >See your products</button>
+        <button class="end-button" >See your added products</button>
     </div>
 </template>
 
@@ -48,6 +50,16 @@ export default {
 <style>
 body {
   margin: 0;
+  background: #f7f7f7!important;
+}
+
+.jumbotron {
+  background-image: url('https://images.unsplash.com/photo-1489444444961-d0fda97f0986');
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+  color: #FFF;
+  text-align:left;
 }
 
 #app {
@@ -60,18 +72,22 @@ body {
 h1 {
   font-weight: bold;
   font-size: 25px;
+  margin: 0;
 }
 ul {
   list-style-type: none;
   padding: 0;
+  
 }
 li {
-  display: inline-block;
-  margin: 0 10px;
-      width: 100%;
+    display: inline-block;
+    /* margin: 0 10px; */
+    width: 85%;
+    padding: 10px;
+    background: #FFF;
     text-align: left;
     font-size: 14px;
-    border-bottom: 1px solid #E2E2E2;
+    border-bottom: 1.8px solid #E2E2E2;
     padding-bottom: 16px;
     font-weight: bold;
 }
@@ -97,16 +113,17 @@ a {
 input {
   margin-top: 20px;
   margin-bottom: 20px;
-  border: none;
-  border-bottom: 1px solid #e2e2e2;
-  padding-bottom: 8px;
-  font-weight: bold;
+  border:none;
+  padding: 15px;
   font-size: 20px;
-  color: #e2e2e2;
+  color: #5b5b5d;
+  box-shadow: -1px 4px 27px -5px rgba(0,0,0,0.1);
+      position: relative;
+    top: -46px;
   
 }
 ::-webkit-input-placeholder {
-    color:    #e2e2e2;
+    color:    #5b5b5d;
 }
 input:focus{
   outline: none;

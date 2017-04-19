@@ -5,7 +5,6 @@
             <li v-for="foodItem in foodItems">
                 <p>{{ foodItem.daypart}}</p>
                 <h3> {{ foodItem.name }}</h3>
-                <button @click="removeElement(foodItem, foodItem.index)">Remove</button>
                 <router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>
             </li>
             <router-link to="/products/info">See Dailey Information</router-link>
@@ -38,6 +37,7 @@
                     {name: 'apple', iron: '4'},
                 ],
                 foodItems: [],
+                foodArray:[],
                 yesterday : moment().add(-1, 'days').format("DD-MM-YYYY"),
             }
         },
@@ -50,6 +50,8 @@
                 products = '',
                 productId = '',
                 dayPart = ''
+
+                this.foodArray.push(dataObj);
 
 
                 for(let i = 0; i < dataObj.length; i++) {
@@ -72,9 +74,6 @@
                     }); 
 
                 }
-            },
-            removeElement(index,id) {
-                this.foodItems.splice(index, 1);
             }
         }
     }

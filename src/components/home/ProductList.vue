@@ -1,15 +1,9 @@
 <template>
 <div>
-    <select v-model="dayPart">
-        <option value="breakfest">breakfest</option>
-        <option value="lunch">lunch</option>
-        <option value="dinner">dinner</option>
-        <option value="snack">snack</option>
-    </select>
-    <ul v-show="active">
+    <ul>
       <li v-for="product in filteredProducts" >
         <p :id="product.fields.item_id">{{product.fields.item_name}}</p>
-        <button v-bind:class="{ active: isActive }" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</button>
+        <button class="add-button" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</button>
       </li>
     </ul>
 </div>
@@ -18,11 +12,11 @@
 
 <script>
     export default {
-
         data () {
             return {
                 dayPart: 'Breakfest',
-                isActive: true
+                isActive: true,
+                seachActive: false
             }
         },
         props: ['products','search','active'],
@@ -64,10 +58,8 @@
                     return products_array;
                 }
             }
-        },
-        mounted () {
-            
         }
+
     }
 
 </script>
