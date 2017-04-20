@@ -1,13 +1,23 @@
 <template>
     <div id="bottom-footer">
     <div class="columns is-mobile">
-        <div class="column active"><i class="fa fa fa-plus fa-lg"></i></div>
-        <div class="column"><i class="fa fa fa-list fa-lg"></i></div>
-        <div class="column"><i class="fa fa fa-pie-chart fa-lg"></i></div>
-        <div class="column"><i class="fa fa fa-refresh fa-lg"></i></div>
+        <router-link to="/" activeClass="active" class="column"><div ><i class="fa fa fa-plus fa-lg"></i></div></router-link>
+        <router-link to="/products" activeClass="active" class="column"><div ><i class="fa fa fa-list fa-lg"></i></div></router-link>
+        <router-link to="/products/info" activeClass="active" class="column"><div><i class="fa fa fa-pie-chart fa-lg"></i></div></router-link>
+        <div class="column" @click="refreshStorage"><i class="fa fa fa-refresh fa-lg"></i></div>
     </div>
     </div>
 </template>
+
+<script>
+    export default {
+        methods: {
+            refreshStorage(){
+                localStorage.clear();
+            }
+        }
+    }
+</script>
 
 <style scoped>
 #bottom-footer {
@@ -20,10 +30,18 @@
 
 .columns {
     padding: 15px;
-    color: #dbdbdb;
+    
+}
+
+a {
+    color: #363636
+}
+
+a:hover {
+    color: #00d1b2;
 }
 
 .active{
-    color: #23d160;
+    
 }
 </style>

@@ -8,6 +8,7 @@
 
 <script>
 import AppHeader from '@/components/Header.vue'
+  import moment from 'moment';
 
 
 export default {

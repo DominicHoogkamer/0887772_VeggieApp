@@ -1,24 +1,25 @@
 <template>
-<div>
-        <section class="hero home-header is-primary is-medium">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">
-                <strong>What did you eat?</strong>
-              </h1>
-              <h2 class="subtitle">
-                So we have a better understanding of your progress as a veggie
-              </h2>
-            </div>
+  <div>
+      <section class="hero home-header is-primary is-medium">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title">
+              <strong>What did you eat?</strong>
+            </h1>
+            <h2 class="subtitle">
+              So we have a better understanding of your progress as a veggie
+            </h2>
           </div>
-        </section>
-        <div class="search-container">
-          <input type="text" v-model="searchString" placeholder="Search for food" @keyup="fillArray">
-          <i class="fa fa fa-search fa-lg"></i>
         </div>
-        <ProductList :products="products"  :searchActive="searchActive" :search="searchString" :active="active"></ProductList>      
+      </section>
+      <div class="search-container">
+        <input type="text" v-model="searchString" placeholder="Search for food" @keyup="fillArray">
+        <i class="fa fa fa-search fa-lg"></i>
+      </div>
+      <p v-if="searchString == ''" class="subtitle no-results">No Results... <br> Please add food!</p>
+      <ProductList v-else :products="products"  :searchActive="searchActive" :search="searchString" :active="active"></ProductList>      
     </div>
-    </div>
+</div>
 </template>
 
 <script>
@@ -79,6 +80,9 @@ body {
   padding: 40px 0 50px 0;
 }
 
+.no-results{
+  padding-bottom: 200px
+}
 
 #app {
  

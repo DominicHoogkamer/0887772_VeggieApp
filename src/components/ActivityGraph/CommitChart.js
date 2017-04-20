@@ -7,8 +7,12 @@ export default Doughnut.extend({
       labels: ['Water Bespaard * 100 = Liter','Koeien bespaard'],
       datasets: [
         {
-          backgroundColor: '#e2e2e2',
-          data: [15, 2]
+            backgroundColor: [
+                "#36A2EB",
+                "#FF6384"
+                
+            ],
+            data: [15, 2]
         }
       ],
        options: {
@@ -16,6 +20,6 @@ export default Doughnut.extend({
             animateScale:true
         }
     }
-    }, {responsive: true, maintainAspectRatio: false, legend: false})
+    }, {responsive: false, maintainAspectRatio: false, legend: false})
   }
 });

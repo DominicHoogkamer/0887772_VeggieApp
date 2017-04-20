@@ -2,11 +2,12 @@
 <div class="container" v-if="searchActive">
     <p>Search Results</p>
     <ul class="card-container">
+        
       <li  v-for="product in filteredProducts" class="card">
       <div class="card-content">
         <p class="content"><strong>{{product.fields.item_name}}</strong></p>
         <p>Item info</p>
-        <a class="button is-light" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</a>
+        <a class="button is-primary" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</a>
       </div>
       </li>
     </ul>
