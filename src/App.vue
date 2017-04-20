@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    
     <router-view></router-view>
+      <app-header></app-header>
+
   </div>
 </template>
 
@@ -19,6 +20,18 @@ export default {
 </script>
 
 <style>
+
+
+header {
+  position : absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  border: none;
+  background-color: #00b52a;
+  color: #FFF;
+}
 
 </style>
 

@@ -1,21 +1,27 @@
 <template>
 <div>
     <div class="container">
-        <ul class="dailey-food-list">
-            <li v-for="foodItem in foodItems">
-                <p>{{ foodItem.daypart}}</p>
-                <h3> {{ foodItem.name }}</h3>
-                <router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>
+        <h1>test</h1>
+        <router-link to="/products/info">See Dailey Information</router-link>
+        <ul class="card-container">
+            <li v-for="foodItem in foodItems" class="card">
+                <div class="card-content">
+                    <p><strong>{{ foodItem.daypart}}</strong></p>
+                    <h3> {{ foodItem.name }}</h3>
+                    <router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>
+                </div>
             </li>
-            <router-link to="/products/info">See Dailey Information</router-link>
         </ul>
 
         <h3>Yesterday: {{this.yesterday}}</h3>
 
-        <ul class="dailey-food-list">
-            <li v-for="staticData in staticDatas">
-            <h3> 1 {{ staticData.name }}</h3>
-            <p>{{ staticData.iron }}</p>
+        <ul class="card-container">
+            <li v-for="staticData in staticDatas"  class="card">
+            <div class="card-content">
+                <p> <strong>{{ staticData.name }}</strong> </p>
+                <p>{{ staticData.iron }}</p>
+                <router-link to="/products/product/513fceb675b8dbbc21001eaf">Link</router-link>
+            </div>
             </li>
         </ul>
     </div>
@@ -59,7 +65,7 @@
                     dayPart = products.daypart;
                     productId = products.id;
 
-                    this.$http.get(`https://api.nutritionix.com/v1/item/${productId}?appId=66d550ab&appKey=8f367946eb8f7f451a2b4e52df031158`)
+                    this.$http.get(`https://api.nutritionix.com/v1/item/${productId}?appId=3abb4168&appKey=003e4fa01d7127e566c6b2478432f4b0`)
                     .then(response => {
                         
                         let productObject = {

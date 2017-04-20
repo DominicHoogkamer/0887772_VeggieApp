@@ -10,9 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "bulma": "^0.4.0",
     "chart.js": "^2.5.0",
     "moment": "^2.18.1",
     "vue": "^2.2.2",
+    "vue-chartjs": "^2.6.0",
     "vue-router": "^2.3.0"
   },
   "devDependencies": {

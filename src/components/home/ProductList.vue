@@ -1,9 +1,13 @@
 <template>
-<div>
-    <ul>
-      <li v-for="product in filteredProducts" >
-        <p :id="product.fields.item_id">{{product.fields.item_name}}</p>
-        <button class="add-button" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</button>
+<div class="container" v-if="searchActive">
+    <p>Search Results</p>
+    <ul class="card-container">
+      <li  v-for="product in filteredProducts" class="card">
+      <div class="card-content">
+        <p class="content"><strong>{{product.fields.item_name}}</strong></p>
+        <p>Item info</p>
+        <a class="button is-light" @click="foodLocal(product.fields.item_id,product.fields.item_name)">Add</a>
+      </div>
       </li>
     </ul>
 </div>
@@ -15,11 +19,9 @@
         data () {
             return {
                 dayPart: 'Breakfest',
-                isActive: true,
-                seachActive: false
-            }
+                isActive: true            }
         },
-        props: ['products','search','active'],
+        props: ['products','search','active','searchActive'],
         methods: {
             foodLocal (id,name) {
                 this.isActive = !this.active;
@@ -32,8 +34,7 @@
                         {
                             'daypart': this.dayPart,
                             'name': name,
-                            'id': id
-                        }
+                            'id': id                        }
                     ]
                 }
 

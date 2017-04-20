@@ -1,16 +1,21 @@
 <template>
     <div>
-        <h1>Dailey Progress</h1>
-        <p>Date</p>
+        <h1 class="title"><strong>Title</strong></h1>
+        <h2 class="subtitle">Subtitle</h2>
         <p>Protein this day</p>
-        <h2>9</h2>
-        <h4>Yesterday: 200</h4>
+        <h2><strong>{{ totalProtein}}</strong></h2>
+        <h4>Yesterday: 60</h4>
+        <p>Good Job!</p>
         <CommitChart></CommitChart>
+                <p>You saved 2 cows today and with that you have saved 20 liters of water with the meal you have ate today</p>
+
         
-        <p>Meal Plan</p>
+        <p>Recommend Recipes</p>
         <h4>39.7%</h4>
 
-        <p>Recommend Recipes</p> 
+        <p>Meal Plan</p>
+        <h4>39.7%</h4> 
+
     </div>
 </template>
 
@@ -20,16 +25,16 @@ import CommitChart from '@/components/ActivityGraph/CommitChart'
     export default {
         data () {
             return {
-                foodItems: [],
-                totalIron: '',
-                totalProtein: ''
+            foodItems: [],
+                totalIron: '56 g',
+                totalProtein: '56 g'
             }
         },
         components: {
             CommitChart
         },
         created () {
-            this.fillArray();
+            //this.fillArray();
         },
         methods: {
             fillArray () {
@@ -37,33 +42,40 @@ import CommitChart from '@/components/ActivityGraph/CommitChart'
                 products = '',
                 productId = '',
                 dayPart = '',
+                foodItems = []
                 length = dataObj.length;
+
 
                 for(let i = 0; i < dataObj.length; i++) {
                     products = dataObj[i].products[0];
                     dayPart = products.daypart;
                     productId = products.id;
 
-                    this.$http.get(`https://api.nutritionix.com/v1/item/${productId}?appId=66d550ab&appKey=8f367946eb8f7f451a2b4e52df031158`)
-                    .then(response => {                        
-                        let productObject = {
-                            iron: response.body.nf_iron_dv,
-                            protein: response.body.nf_protein,
-                        }
-                        this.foodItems.push(productObject)
+                    console.log(dataObj[i].count)
+
+                    this.$http.get(`https://api.nutritionix.com/v1/item/${productId}?appId=e04cdea6&appKey=a9e5f13309aa5afb4086ab88774eab9f`)
+                    .then(response => {  
+                        this.foodItems.push( { iron: response.body.nf_iron_dv  } );
                     }, error => {
                     console.log(error);
                     }); 
                 }
-            },
+
+            }
         }
     }
 
 </script>
 
 
-<style scoped>
+<style lang="css" scoped>
+
 body{
     background: #FAFAFA
+}
+
+canvas {
+    width: 200px!important;
+    height: auto;
 }
 </style>
